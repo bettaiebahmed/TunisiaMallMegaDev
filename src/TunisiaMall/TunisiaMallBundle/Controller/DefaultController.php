@@ -30,7 +30,7 @@ return $this->redirect($this->generateUrl('administrateur'));
         else if( $this->container->get('security.context')->isGranted('ROLE_RESPONSABLE') && ($validite="valide") )
         {
             return $this->redirect($this->generateUrl('responsable'));
-
+  //ahmed
         }
         
        
@@ -44,7 +44,9 @@ return $this->redirect($this->generateUrl('administrateur'));
           {
               $stat = new Stat();
         $stat->compter();
-        return $this->render('TunisiaMallBundle:Default:index.html.twig',array('csrf_token'=>$csrfToken));
+         $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('TunisiaMallBundle:Produit')->search2();
+        return $this->render('TunisiaMallBundle:Default:index.html.twig',array('csrf_token'=>$csrfToken,'product'=>$article));
 
           }
           else if ($validite=="refuser")
@@ -55,7 +57,9 @@ return $this->redirect($this->generateUrl('administrateur'));
         }
         $stat = new Stat();
         $stat->compter();
-                return $this->render('TunisiaMallBundle:Default:index.html.twig',array('csrf_token'=>$csrfToken));
+                  $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('TunisiaMallBundle:Produit')->search2();
+        return $this->render('TunisiaMallBundle:Default:index.html.twig',array('csrf_token'=>$csrfToken,'product'=>$article));
 
     }
     public function contactAction()
@@ -67,7 +71,8 @@ return $this->redirect($this->generateUrl('administrateur'));
        
             
             
-         } else {
+         } 
+         else {
             // BC for SF < 2.4
             $csrfToken = $this->has('form.csrf_provider')
                 ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
