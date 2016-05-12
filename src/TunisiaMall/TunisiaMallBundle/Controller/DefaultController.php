@@ -100,7 +100,9 @@ return $this->redirect($this->generateUrl('administrateur'));
         
         
           if ($validite=="valide")
-          {
+     
+              
+              {
         return $this->render('TunisiaMallBundle:Default:contact.html.twig',array('csrf_token'=>$csrfToken));
          $stat = new Stat();
         $stat->compter();
