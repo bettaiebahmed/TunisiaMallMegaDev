@@ -48,6 +48,7 @@ class ProduitRepository extends EntityRepository {
         $query = $this->getEntityManager()->createQuery("Delete from TunisiaMallBundle:Produit a where a.id=:id ");
         $query->setParameter('id', $id);
         
+        
         $query->execute();
     }
 
