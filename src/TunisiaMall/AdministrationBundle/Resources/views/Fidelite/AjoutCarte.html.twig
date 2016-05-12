@@ -1,0 +1,81 @@
+{% extends 'TunisiaMallAdministrationBundle::responsable.html.twig' %}
+{% block navigation %} <li>
+        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Gestion de Stock</span></a>
+        <ul>
+            <li><a href="{{path('ajouter_produit')}}"><span class="fa fa-image"></span> Ajouter</a></li>
+            <li class="active"><a href="{{path('_afficher_produit')}}"><span class="fa fa-user"></span> Consulter</a></li>
+            <li><a href="{{path('_recherche_article')}}"><span class="fa fa-users"></span> Rechercher</a></li>
+
+
+        </ul>
+    </li>
+    <li>
+        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Publicité</span></a>                        
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Fidélisation</span></a>
+        <ul>
+
+            <li class="active"><a href="/TunisiaMallV2/web/app_dev.php/AjoutCarte">Ajouter une carte de fidélité</a></li>
+            <li><a href="/TunisiaMallV2/web/app_dev.php/AttribuerPoint">Consulter/Attribuer des points</a></li>
+        </ul>
+    </li>
+{% endblock %}
+{% block emplacement %} <li class="active">Ajouter Carte Fidélité</li>{%endblock%}
+{% block content%}
+    <div class="page-content-wrap">                
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                              <form action="" method="post">
+                            <!-- START VALIDATIONENGINE PLUGIN -->
+                            <div class="block">
+                                <h4>Ajouter Carte Fidélité</h4>                                
+                                <form id="validate" role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">                            
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Numéro de la carte:</label>
+                                        <div class="col-md-9">
+                                            {{form_widget(Form.num,{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                                            <span class="help-block">Taille Max =8</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Validité:</label>
+                                        <div class="col-md-9">
+                                            {{form_widget(Form.validite,{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                                        </div>
+                                    </div>                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nombre des point à attribuer:</label>
+                                        <div class="col-md-9">
+                                            {{form_widget(Form.nbrePoint,{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                                        </div>
+                                    </div>  
+                                       
+                                        
+                                         <div class="form-group">
+                                        <label class="col-md-3 control-label">ID Boutique:</label>
+                                        <div class="col-md-9">
+                                            {{form_widget(Form.idboutique,{'value' : app.user.boutique },{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        
+                                        <br>
+                                        {{form_widget(Form.Ajouter)}}
+                                    </div>  
+                                        
+                                         
+                                             
+                                    </div>     
+                                </form>                                   
+                                </form>
+                            </div>               
+                        </div>
+                    </div>
+    </div>
+{%endblock%}

@@ -1,0 +1,66 @@
+tunisia_mall_administration_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TunisiaMallAdministrationBundle:Default:index }
+responsable:
+    path:   /responsable
+    defaults: { _controller: TunisiaMallAdministrationBundle:Default:responsable }
+administrateur:
+    path:   /administrateur
+    defaults: { _controller: TunisiaMallAdministrationBundle:Default:administrateur }
+_ajout_carte:
+    path:     /AjoutCarte
+    defaults: { _controller: TunisiaMallAdministrationBundle:Fidelite:AjoutCarte }
+
+_consulter_modify:
+    path:     /ConsulterModify
+    defaults: { _controller: TunisiaMallAdministrationBundle:Fidelite:ConsulterModify }
+
+modify:
+    path:     /modify{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:Fidelite:modify }
+delete:
+    path:     /delete{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:Fidelite:delete }
+
+
+ajouter_produit:
+    path:     /ajouterProduit
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:ajouterProduit }
+
+_afficher_produit:
+    path:     /AfficherProduit
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:AfficherProduit }
+
+_modifier_article:
+    path:     /ModifierArticle{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:ModifierArticle }
+
+_supprimer_article:
+    path:     /SupprimerArticle{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:SupprimerArticle }
+
+_recherche_article:
+    path:     /RechercheArticle
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:RechercheArticle }
+
+resultat:
+    path:     /resultat
+    defaults: { _controller: TunisiaMallAdministrationBundle:Produit:resultat }
+
+_valider_responsable:
+    path:     /ValiderResponsable
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:ValiderResponsable }
+
+_valider_client:
+    path:     /ValiderClient
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:ValiderClient }
+
+_supprimer_compte:
+    path:     /SupprimerCompte
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:SupprimerCompte }
+valider_client:
+    path:     /valider_client{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:valider_client }
+refuser_client:
+    path:     /refuser_client{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:refuser_client }

@@ -1,0 +1,90 @@
+{% extends 'TunisiaMallAdministrationBundle::responsable.html.twig' %}
+{% block navigation %} 
+    <li>
+        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Gestion de Stock</span></a>
+        <ul>
+         <li><a href="{{path('ajouter_produit')}}"><span class="fa fa-image"></span> Ajouter</a></li>
+            <li class="active"><a href="{{path('_afficher_produit')}}"><span class="fa fa-user"></span> Consulter</a></li>
+            <li><a href="{{path('_recherche_article')}}"><span class="fa fa-users"></span> Rechercher</a></li>
+
+
+        </ul>
+    </li>
+    <li>
+        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Publicité</span></a>                        
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Fidélisation</span></a>
+        <ul>
+
+            <li><a href="/TunisiaMallV2/web/app_dev.php/AjoutCarte">Ajouter une carte de fidélité</a></li>
+            <li><a href="/TunisiaMallV2/web/app_dev.php/AttribuerPoint">Consulter/Attribuer des points</a></li>
+        </ul>
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Gestion des enseignes</span></a>
+        <ul>
+
+            <li><a href="">Ajouter une enseigne</a></li>
+            <li><a href="">Modifier les coordonnées d’une enseigne</a></li>
+            <li><a href="">Supprimer une enseigne</li>
+        </ul>
+    </li>
+{% endblock %}
+{% block emplacement %} <li class="active">Consulter Points</li>{%endblock%}
+
+{% block content %}
+<div class="page-content-wrap">                
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" method="post" {{ form_enctype(Form) }}>
+                    <!-- START VALIDATIONENGINE PLUGIN -->
+                    <div class="block">
+                                        {% for a in article%}
+
+                        <h4>Modifier Produit N° : {{a.id}}</h4>                                
+                        <form id="validate" role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">                            
+                                <label>Nom de l'article:</label>
+
+          {{form_widget(Form.nomProduit,{'value' : a.nomProduit },{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                            <br>
+
+                                <label>Description:</label>
+
+                                {{form_widget(Form.Description, {'value' : a.Description },{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                                                                        <br>
+
+                                <label>Type de produit:</label>
+
+                                {{form_widget(Form.typeProduit, {'value' : a.typeProduit },{'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                                                                        <br>
+
+                                <label>Quantite :</label>
+
+                                {{form_widget(Form.quantiteStock, {'value' : a.quantiteStock },{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                                         <br>
+
+                                <label>Prix:</label>
+                                {{form_widget(Form.prix, {'value' : a.prix },{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                            <br>
+                            
+                                        </div>
+                    
+
+
+
+                    <div class="btn-group pull-right">
+                        {{form_rest(Form)}}
+                    </div> 
+                        {% endfor %}
+                </form>                                   
+                </form>
+            </div>               
+        </div>
+    </div>
+</div>
+{% endblock %}
