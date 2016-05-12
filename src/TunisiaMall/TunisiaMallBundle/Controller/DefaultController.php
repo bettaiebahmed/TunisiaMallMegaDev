@@ -12,7 +12,7 @@ class DefaultController extends Controller
          if ($this->has('security.csrf.token_manager')) {
             $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue();
          
-            
+            //tibou
             
          } else {
             // BC for SF < 2.4
