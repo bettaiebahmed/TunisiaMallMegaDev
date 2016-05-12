@@ -50,7 +50,7 @@ class ProduitRepository extends EntityRepository {
         $query->execute();
     }
      public function search_nom_article($nomProduit) {
-
+//
         $query = $this->createQueryBuilder('TunisiaMallBundle:Media')
                 ->select('a.id,a.ref,a.nomProduit,a.description,a.idenseigne,a.nom_categorie,a.typeProduit,a.quantiteStock,a.prix,a.prixGros,m.path')
                 ->distinct()
