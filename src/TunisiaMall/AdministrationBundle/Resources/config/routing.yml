@@ -64,3 +64,19 @@ valider_client:
 refuser_client:
     path:     /refuser_client{id}
     defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:refuser_client }
+
+_creer_pack:
+    path:     /CreerPack
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:CreerPack }
+
+_modifier_pack:
+    path:     /ModifierPack
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:ModifierPack }
+
+_supprimer:
+    path:     /Supprimer
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:Supprimer }
+
+_definir_zone_publicitaire:
+    path:     /DefinirZonePublicitaire
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:DefinirZonePublicitaire }
