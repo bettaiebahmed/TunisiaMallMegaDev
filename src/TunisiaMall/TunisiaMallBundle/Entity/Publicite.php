@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TunisiaMall\TunisiaMallBundle\Entity\PubliciteRepository")
+
  */
 class Publicite
 {
@@ -34,6 +36,12 @@ class Publicite
      * @ORM\Column(name="typePub", type="string", length=255)
      */
     private $typePub;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="emplacement", type="string", length=255)
+     */
+    private $emplacement;
 
 
     /**
@@ -91,4 +99,13 @@ class Publicite
     {
         return $this->typePub;
     }
+    function getEmplacement() {
+        return $this->emplacement;
+    }
+
+    function setEmplacement($emplacement) {
+        $this->emplacement = $emplacement;
+    }
+
+
 }
