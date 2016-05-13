@@ -4,3 +4,17 @@ tunisia_mall_homepage:
 contact_us:
     path:     /contact
     defaults: { _controller: TunisiaMallBundle:Default:contact }
+ajouterPanier:
+    path:      /ajouter{id}
+    defaults: { _controller: TunisiaMallBundle:Default:ajouter }
+
+_afficher:
+    path:     /Afficher
+    defaults: { _controller: TunisiaMallBundle:Panier:Afficher }
+modifierqte:
+    path:   /Modifierqte{id}
+    defaults: { _controller: TunisiaMallBundle:Panier:modifierqte }
+supprimer_panier:
+    path:   /supprimer_panier{id}
+    defaults: { _controller: TunisiaMallBundle:Panier:supprimer }
+

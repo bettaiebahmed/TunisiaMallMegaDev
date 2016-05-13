@@ -3,12 +3,16 @@
 namespace TunisiaMall\TunisiaMallBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use TunisiaMall\TunisiaMallBundle\Entity\Panier;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $session = $this->getRequest()->getSession();
         
+         
+       
          if ($this->has('security.csrf.token_manager')) {
             $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue();
          
@@ -57,7 +61,7 @@ return $this->redirect($this->generateUrl('administrateur'));
         }
         $stat = new Stat();
         $stat->compter();
-                  $em = $this->getDoctrine()->getManager();
+         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('TunisiaMallBundle:Produit')->search2();
         return $this->render('TunisiaMallBundle:Default:index.html.twig',array('csrf_token'=>$csrfToken,'product'=>$article));
 
@@ -119,4 +123,27 @@ return $this->redirect($this->generateUrl('administrateur'));
 
     }
     }
-}
+    public function ajouterAction($id)
+    {
+        $iduser = $this->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('TunisiaMallBundle:Produit')->findBy(array('id'=>$id));
+        $ref=$article[0]->getRef();
+        $nom=$article[0]->getnomProduit();
+        $prix=$article[0]->getprix();
+        $panier= new Panier();
+        $panier->setRef($ref);
+        $panier->setNom($nom);
+        $panier->setPrix($prix);
+        $panier->setIduser($iduser);
+        $em = $this->getDoctrine()->getManager();
+
+    // tells Doctrine you want to (eventually) save the Product (no queries yet)
+    $em->persist($panier);
+
+    // actually executes the queries (i.e. the INSERT query)
+    $em->flush();
+
+        return $this->redirect($this->generateUrl('_afficher'));    }
+    }
