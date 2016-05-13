@@ -27,7 +27,7 @@ if( $this->container->get('security.context')->isGranted('ROLE_ADMIN')  ){
 return $this->redirect($this->generateUrl('administrateur'));
             
         }
-        else if( $this->container->get('security.context')->isGranted('ROLE_RESPONSABLE') && ($validite="valide") )
+        else if( $this->container->get('security.context')->isGranted(' ROLE_RESPONSABLE') && ($validite="valide") )
         {
             return $this->redirect($this->generateUrl('responsable'));
 
@@ -80,7 +80,7 @@ if( $this->container->get('security.context')->isGranted('ROLE_ADMIN')  ){
 return $this->redirect($this->generateUrl('administrateur'));
             
         }
-        else if( $this->container->get('security.context')->isGranted('ROLE_RESPONSABLE') && ($validite="valide") )
+        else if( $this->container->get('security.context')->isGranted(' ROLE_RESPONSABLE') && ($validite="valide") )
         {
             return $this->redirect($this->generateUrl('responsable'));
 

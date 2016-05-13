@@ -35,7 +35,26 @@ private $boutique;
 * @ORM\Column(type="string")
 * 
 */
-private $valide="Invalide"; 
+private $valide="Invalide";
+/**
+* 
+* 
+* @ORM\Column(type="integer")
+*/
+private $cin;
+    
+/**
+* @var string
+*
+* @ORM\Column(name="adresse", type="text", length=255)
+*/
+private $adresse;
+    
+/**
+* @ORM\OneToOne(targetEntity="TunisiaMall\TunisiaMallBundle\Entity\Media", cascade={"persist","remove"},mappedBy="TunisiaMall\TunisiaMallBundle\Entity\User")
+*  @ORM\JoinColumn(name="image", referencedColumnName="id")
+*/
+private $image;
 
 public function __construct()
 {
@@ -73,6 +92,40 @@ function getValide() {
 function setValide($valide) {
     $this->valide = $valide;
 }
+
+function getCin() {
+    return $this->cin;
+}
+
+function getAdresse() {
+    return $this->adresse;
+}
+/**
+     * Get image
+     *
+     * @return \TunisiaMall\TunisiaMallBundle\Entity\Media 
+     */
+function getImage() {
+    return $this->image;
+}
+
+function setCin($cin) {
+    $this->cin = $cin;
+}
+
+function setAdresse($adresse) {
+    $this->adresse = $adresse;
+}
+/**
+     * Set image
+     *
+     * @param \TunisiaMall\TunisiaMallBundle\Entity\Media $image
+     * @return Produits
+     */
+function setImage(\TunisiaMall\TunisiaMallBundle\Entity\Media $image) {
+    $this->image = $image;
+}
+
 
 
 }
