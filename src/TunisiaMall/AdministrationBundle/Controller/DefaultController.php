@@ -23,7 +23,15 @@ class DefaultController extends Controller
        $statistique=$em->getRepository('TunisiaMallBundle:Statistique')->findAll();
         $em=$this->getDoctrine()->getManager(); 
        $usernumber=$em->getRepository('TunisiaMallBundle:User')->getUserNumber()-1;
-       
+       $this->get('knp_snappy.pdf')->generateFromHtml(
+    $this->renderView(
+        'TunisiaMallAdministrationBundle::administrateur.html.twig',
+        array(
+            'some'  => $vars
+        )
+    ),
+    'C:\wamp\www\TunisiaMallMegaDev\web\uploads\new.pdf'
+);
         
         return $this->render('TunisiaMallAdministrationBundle::administrateur.html.twig', array('statistique'=>$statistique,'usernumber'=>$usernumber));
     }

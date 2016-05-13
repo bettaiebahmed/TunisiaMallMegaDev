@@ -50,8 +50,53 @@
                                 </td>
                            <td class="delete"><a href="{{ path('supprimer_panier',{'id': p.id} )}}" title="Delete"> <i
                                         class="glyphicon glyphicon-trash fa-2x"></i></a></td>
-                                <td><input class="quanitySniper" type="text" value="2" name="quanitySniper"></td>
-                                <td class="price">{{p.totale}}</td>
+                       <script>
+                           function calculer(valeur,id_div,id)
+                           {
+if (window.XMLHttpRequest)    //  Objet standard
+		{ 
+			xhr = new XMLHttpRequest();     //  Firefox,
+			
+		} 
+		else  if (window.ActiveXObject)      //  Internet
+		{
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhr.onreadystatechange = function()
+		{ 
+	
+		if ((xhr.readyState == 4 ) && (xhr.status == 200) )
+			
+			document.getElementById(id_div).innerHTML = xhr.responseText;
+
+		
+		};
+                xhr.open("GET","http://localhost/tunisiamallfinalversion/web/calculer.php?valeur="+valeur+"&id="+id,true);
+    xhr.send();
+    return false;
+                           }
+                           </script>
+                                        
+                                <td><select onchange="calculer(this.value,{{p.id}},{{p.id}})">
+                                        <option><div id="{{p.id}}"></div></option>    
+                                        <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                             <option>9</option>
+                                             <option>10</option>
+
+
+
+                                            
+                                            
+                                            
+                                            </select></td>
+                              <td class="price" id="{{p.id}}"></td>
                             </tr>
                             {% endfor %}
                           
@@ -82,49 +127,11 @@
             <div class="contentBox">
                 <div class="w100 costDetails">
                     <div class="table-block" id="order-detail-content"><a class="btn btn-primary btn-lg btn-block "
-                                                                          title="checkout" href="checkout-0.html"
+                                                                          title="checkout" href="{{path('checkout_panier')}}"
                                                                           style="margin-bottom:20px"> Proceed to
                         checkout &nbsp; <i class="fa fa-arrow-right"></i> </a>
 
-                        <div class="w100 cartMiniTable">
-                            <table id="cart-summary" class="std table">
-                                <tbody>
-                                <tr>
-                                    <td>Total products</td>
-                                                                  {% for p in panier2%}
-
-                                    <td class="price">{{p.totale}}</td>
-                                    {% endfor %}
-                                    
-                                </tr>
-                                <tr style="">
-                                    <td>Shipping</td>
-                                    <td class="price"><span class="success">Free shipping!</span></td>
-                                </tr>
-                                <tr class="cart-total-price ">
-                                    <td>Total (tax excl.)</td>
-                                    <td class="price">$216.51</td>
-                                </tr>
-                                <tr>
-                                    <td>Total tax</td>
-                                    <td class="price" id="total-tax">$0.00</td>
-                                </tr>
-                                <tr>
-                                                           {% for p in panier2%}
-
-                                    <td> Total</td>
-                                    <td class=" site-color" id="total-price">{{p.totale}}</td>
-                                    {% endfor %}
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="input-append couponForm">
-                                            <input class="col-lg-8" id="appendedInputButton" type="text"
-                                                   placeholder="Coupon code">
-                                            <button class="col-lg-4 btn btn-success" type="button">Apply!</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                       
                                 </tbody>
                                 <tbody>
                                 </tbody>

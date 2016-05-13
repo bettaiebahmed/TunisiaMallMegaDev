@@ -18,3 +18,10 @@ supprimer_panier:
     path:   /supprimer_panier{id}
     defaults: { _controller: TunisiaMallBundle:Panier:supprimer }
 
+checkout_panier:
+    path:   /Checkout
+    defaults: { _controller: TunisiaMallBundle:Panier:Checkout }
+supprimer_panier_finale:
+    path:   /fasa5_finale
+    defaults: { _controller: TunisiaMallBundle:Panier:supprimerfinale }
+

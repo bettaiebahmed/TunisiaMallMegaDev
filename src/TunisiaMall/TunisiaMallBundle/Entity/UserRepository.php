@@ -21,6 +21,8 @@ class UserRepository extends EntityRepository
       $query->setParameter('id',$id);
          $query->execute();
     }
+ 
+    
     public function refuser_client($id)
     {
    $query=$this->getEntityManager()->createQuery("Update TunisiaMallBundle:User u SET u.valide='refuser' where u.id=:id ");

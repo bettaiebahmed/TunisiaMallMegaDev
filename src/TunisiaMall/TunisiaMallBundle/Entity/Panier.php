@@ -48,13 +48,26 @@ class Panier
      */
     private $iduser;
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="qte", type="string")
      */
     private $qte;
+     /**
+     * @var float
+     *
+     * @ORM\Column(name="totale", type="float")
+     */
+    private $totale=0;
+    function getTotale() {
+        return $this->totale;
+    }
 
-   
+    function setTotale($totale) {
+        $this->totale = $totale;
+    }
+
+       
     function getRef() {
         return $this->ref;
     }

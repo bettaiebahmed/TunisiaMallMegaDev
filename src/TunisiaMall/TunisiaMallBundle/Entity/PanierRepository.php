@@ -27,8 +27,19 @@ class PanierRepository extends EntityRepository {
     public function search($idenseigne) {
 
         $query = $this->createQueryBuilder('TunisiaMallBundle:Media')
-                ->select('SUM(a.prix) as totale,a.ref,a.nom,a.prix,a.id')
+                ->select('a.ref,a.nom,a.prix,a.id')
                 ->distinct()
+                ->from('TunisiaMallBundle:Panier', 'a')
+                              
+                ->where('a.iduser=:idenseigne')
+                ->setParameter('idenseigne', $idenseigne);
+                
+        return $query->getQuery()->getResult();
+    }
+      public function totale($idenseigne) {
+
+        $query = $this->createQueryBuilder('TunisiaMallBundle:Media')
+                ->select('sum(a.totale) as totale')
                 ->from('TunisiaMallBundle:Panier', 'a')
                               
                 ->where('a.iduser=:idenseigne')
@@ -38,6 +49,13 @@ class PanierRepository extends EntityRepository {
     }
      public function supp($id) {
         $query = $this->getEntityManager()->createQuery("Delete from TunisiaMallBundle:Panier a where a.id=:id ");
+        $query->setParameter('id', $id);
+        
+        
+        $query->execute();
+    }
+    public function suppFinale($id) {
+        $query = $this->getEntityManager()->createQuery("Delete from TunisiaMallBundle:Panier a where a.iduser=:id ");
         $query->setParameter('id', $id);
         
         
