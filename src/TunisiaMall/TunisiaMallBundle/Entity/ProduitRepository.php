@@ -23,7 +23,7 @@ class ProduitRepository extends EntityRepository {
                 
               
                
-                ->where('a.idenseigne=:idenseigne')
+                ->where('a.iduser=:idenseigne')
                 ->setParameter('idenseigne', $idenseigne);
                 
         return $query->getQuery()->getResult();
