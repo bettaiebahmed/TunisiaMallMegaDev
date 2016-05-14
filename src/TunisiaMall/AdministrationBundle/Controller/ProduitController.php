@@ -17,9 +17,11 @@ class ProduitController extends Controller
         $request = $this->get('request_stack')->getCurrentRequest();
         $form->handleRequest($request);
         if ($form->isValid()) {
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
+            
             return $this->redirect($this->generateUrl('_afficher_produit'));
         }
         return $this->render('TunisiaMallAdministrationBundle:Produit:ajouterProduit.html.twig', array('Form' => $form->createView()

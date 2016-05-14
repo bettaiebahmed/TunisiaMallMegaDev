@@ -64,3 +64,18 @@ valider_client:
 refuser_client:
     path:     /refuser_client{id}
     defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:refuser_client }
+
+_ajouter_enseigne:
+    path:     /AjouterEnseigne
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionEnseigne:AjouterEnseigne }
+
+_modifier_enseigne:
+    path:     /ModifierEnseigne{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionEnseigne:ModifierEnseigne }
+
+_afficher_enseigne:
+    path:     /AfficherEnseigne
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionEnseigne:AfficherEnseigne }
+_supprimer_enseigne:
+    path:     /SupprimerEnseigne{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionEnseigne:delete }
