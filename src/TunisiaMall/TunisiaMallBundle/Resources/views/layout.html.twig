@@ -24,18 +24,31 @@
         <![endif]-->
 
         <!-- include pace script for automatic web page progress bar  -->
-       
+
         <script>
             paceOptions = {
                 elements: true
             };
         </script>
         <script src="{{asset('js/pace.min.js')}}"></script>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
     </head>
 
     <body>
 
+        <ul class='noLightbox social_bookmarks icon_count_4'>
 
+        </ul>
         <!-- /.ModalSignup End -->
 
         <!-- Fixed navbar start -->
@@ -59,21 +72,23 @@
                         <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
                             <div class="pull-right">
                                 <ul class="userMenu">
-                                    
-                                            {% if (app.user) %}
+
+                                    {% if (app.user) %}
                                         <li><a href="{{ path("tunisia_mall_homepage") }}" > <span class="hidden-xs"> Hi {{ app.user.username }} </span>
                                                 <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
-                                                <li><a href="{{ path("tunisia_mall_homepage") }}"><span class="hidden-xs"> Profile</span> <i
-                                                class="glyphicon glyphicon-user hide visible-xs "></i></a></li>
+                                        <li><a href="{{ path("tunisia_mall_homepage") }}"><span class="hidden-xs"> Profile</span> <i
+                                                    class="glyphicon glyphicon-user hide visible-xs "></i></a></li>
                                         <li><a href="{{ path("fos_user_security_logout") }}"><span class="hidden-xs"> Se Déconnecter</span> <i
                                                     class="glyphicon glyphicon-user hide visible-xs "></i></a></li>
                                             {% else %}
-                            <li><a href="#" data-toggle="modal" data-target="#ModalLogin"> <span class="hidden-xs">Sign In</span>
+                                        <li><a href="#" data-toggle="modal" data-target="#ModalLogin"> <span class="hidden-xs">Sign In</span>
                                                 <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
                                         <li class="hidden-xs"><a href="{{ path("fos_user_registration_register") }}" > S'inscrire </a></li>
-                                            {% endif %}
+                                        <li class='social_bookmarks_facebook'><a href='https://www.facebook.com/TunisiaMall/?fref=ts'>Consulter Notre Page FB</a></li>
+                                        
+                                        {% endif %}
 
-                                       
+
                                 </ul>
                             </div>
                         </div>
@@ -87,9 +102,9 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                             class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                             class="icon-bar"> </span> <span class="icon-bar"> </span></button>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"><i
+                    <a  type="button" data-><i
                             class="fa fa-shopping-cart colorWhite"> </i> <span
-                            class="cartRespons colorWhite"> Cart ($210.00) </span></button>
+                            class="cartRespons colorWhite"> Cart ($210.00) </span></a>
                     <a class="navbar-brand " href="{{ path("tunisia_mall_homepage") }}"> <img src="{{asset('images/logo.png')}}" alt="TunisiaMALL"  width="250" height="75" > </a>
 
                     <!-- this part for mobile -->
@@ -238,11 +253,11 @@
                                         <li class="no-border">
                                             <p class="promo-1"><strong> NEW COLLECTION </strong></p>
                                         </li>
-                                        <li><a href="category.html"> ALL NEW PRODUCTS </a></li>
-                                        <li><a href="category.html"> NEW TOPS </a></li>
-                                        <li><a href="category.html"> NEW SHOES </a></li>
-                                        <li><a href="category.html"> NEW TSHIRT </a></li>
-                                        <li><a href="category.html"> NEW TSHOP </a></li>
+                                        {% for boutique in magazins %}
+                                            <li>
+                                                <a href=""> {{boutique.nom}} </a>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                     <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
                                         <li><a class="newProductMenuBlock" href="product-details.html"> <img
@@ -457,14 +472,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#" target="_blank"> Visite Virtuelle </a></li>
+                        <li><a href="{{path('visitevirtuelmall', {})}}" target="_self"> Visite Virtuelle </a></li>
                         <li><a href="{{path('contact_us')}}">Contact Us</a><li>
                     </ul>
                     </ul>
 
                     <!--- this part will be hidden for mobile version -->
                     <div class="nav navbar-nav navbar-right hidden-xs">
-                        <div class="dropdown  cartMenu "><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+                        <div class=""><a href="{{path('_afficher')}}" class="" > <i
                                     class="fa fa-shopping-cart"> </i> <span class="cartRespons"> Cart ($210.00) </span> <b
                                     class="caret"> </b> </a>
 
@@ -697,8 +712,8 @@
                                 <li>
                                     <div class="input-append newsLatterBox text-center">
                                         <input type="text" class="full text-center" placeholder="Email ">
-                                        <button class="btn  bg-gray" type="button"> Subscribe <i
-                                                class="fa fa-long-arrow-right"> </i></button>
+                                        <button class="btn  bg-gray" type="button">
+                                            </i></button>
                                     </div>
                                 </li>
                             </ul>
@@ -736,65 +751,65 @@
             </div>
             <!--/.footer-bottom-->
         </footer>
-<!-- Modal Login start -->
-{% trans_default_domain 'FOSUserBundle' %}
+        <!-- Modal Login start -->
+        {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                <h3 class="modal-title-site text-center"> Login to TSHOP </h3>
-            </div>
-            <div class="modal-body">
-                <form action="{{ path("fos_user_security_check") }}" method="post">
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                        <h3 class="modal-title-site text-center"> Login to TSHOP </h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-                <div class="form-group login-username">
-                    <div>
-                        <input name="_username" id="login-user" class="form-control input" size="20"
-                               placeholder="Enter Username" type="text">
+                            <div class="form-group login-username">
+                                <div>
+                                    <input name="_username" id="login-user" class="form-control input" size="20"
+                                           placeholder="Enter Username" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group login-password">
+                                <div>
+                                    <input name="_password" id="login-password" class="form-control input" size="20"
+                                           placeholder="Password" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <div class="checkbox login-remember">
+                                        <label>
+                                            <input name="remember_me" value="forever" checked="checked" type="checkbox">
+                                            Remember Me </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <input name="_submit" class="btn  btn-block btn-lg btn-primary" value="LOGIN" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                        <!--userForm-->
+
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-center"> Not here before? <a data-toggle="modal" data-dismiss="modal"
+                                                                    href="#ModalSignup"> Sign Up. </a> <br>
+                            <a href="forgot-password.html"> Lost your password? </a></p>
                     </div>
                 </div>
-                <div class="form-group login-password">
-                    <div>
-                        <input name="_password" id="login-password" class="form-control input" size="20"
-                               placeholder="Password" type="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <div class="checkbox login-remember">
-                            <label>
-                                <input name="remember_me" value="forever" checked="checked" type="checkbox">
-                                Remember Me </label>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <input name="_submit" class="btn  btn-block btn-lg btn-primary" value="LOGIN" type="submit">
-                    </div>
-                </div>
-                </form>
-                <!--userForm-->
+                <!-- /.modal-content -->
+                <!-- Le javascript
+                ================================================== -->
 
-            </div>
-            <div class="modal-footer">
-                <p class="text-center"> Not here before? <a data-toggle="modal" data-dismiss="modal"
-                                                            href="#ModalSignup"> Sign Up. </a> <br>
-                    <a href="forgot-password.html"> Lost your password? </a></p>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-        <!-- Le javascript
-        ================================================== -->
-
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/javascript" src="{{asset('js/jquery/jquery-1.10.1.min.js')}}"></script>
-        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('js/idangerous.swiper-2.1.min.js')}}"></script>
-        <script>
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script type="text/javascript" src="{{asset('js/jquery/jquery-1.10.1.min.js')}}"></script>
+                <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+                <script src="{{asset('js/idangerous.swiper-2.1.min.js')}}"></script>
+                <script>
             var mySwiper = new Swiper('.swiper-container', {
                 pagination: '.box-pagination',
                 keyboardControl: true,
@@ -812,43 +827,43 @@
                 e.preventDefault()
                 mySwiper.swipeNext()
             })
-        </script>
+                </script>
 
-        <!-- include jqueryCycle plugin -->
-        <script src="{{asset('js/jquery.cycle2.min.js')}}"></script>
+                <!-- include jqueryCycle plugin -->
+                <script src="{{asset('js/jquery.cycle2.min.js')}}"></script>
 
-        <!-- include easing plugin -->
-        <script src="{{asset('js/jquery.easing.1.3.js')}}"></script>
+                <!-- include easing plugin -->
+                <script src="{{asset('js/jquery.easing.1.3.js')}}"></script>
 
-        <!-- include  parallax plugin -->
-        <script type="text/javascript" src="{{asset('js/jquery.parallax-1.1.js')}}"></script>
+                <!-- include  parallax plugin -->
+                <script type="text/javascript" src="{{asset('js/jquery.parallax-1.1.js')}}"></script>
 
-        <!-- optionally include helper plugins -->
-        <script type="text/javascript" src="{{asset('js/helper-plugins/jquery.mousewheel.min.js')}}"></script>
+                <!-- optionally include helper plugins -->
+                <script type="text/javascript" src="{{asset('js/helper-plugins/jquery.mousewheel.min.js')}}"></script>
 
-        <!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
+                <!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
 
-        <script type="text/javascript" src="{{asset('js/jquery.mCustomScrollbar.js')}}"></script>
+                <script type="text/javascript" src="{{asset('js/jquery.mCustomScrollbar.js')}}"></script>
 
-        <!-- include icheck plugin // customized checkboxes and radio buttons   -->
-        <script type="text/javascript" src="{{asset('plugins/icheck-1.x/icheck.min.js')}}"></script>
+                <!-- include icheck plugin // customized checkboxes and radio buttons   -->
+                <script type="text/javascript" src="{{asset('plugins/icheck-1.x/icheck.min.js')}}"></script>
 
-        <!-- include grid.js // for equal Div height  -->
-        <script src="{{asset('js/grids.js')}}"></script>
+                <!-- include grid.js // for equal Div height  -->
+                <script src="{{asset('js/grids.js')}}"></script>
 
-        <!-- include carousel slider plugin  -->
-        <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+                <!-- include carousel slider plugin  -->
+                <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 
-        <!-- jQuery select2 // custom select   -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+                <!-- jQuery select2 // custom select   -->
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
-        <!-- include touchspin.js // touch friendly input spinner component   -->
-        <script src="{{asset('js/bootstrap.touchspin.js')}}"></script>
+                <!-- include touchspin.js // touch friendly input spinner component   -->
+                <script src="{{asset('js/bootstrap.touchspin.js')}}"></script>
 
-        <!-- include custom script for only homepage  -->
-        <script src="{{asset('js/home.js')}}"></script>
+                <!-- include custom script for only homepage  -->
+                <script src="{{asset('js/home.js')}}"></script>
 
-        <!-- include custom script for site  -->
-        <script src="{{asset('js/script.js')}}"></script>
-    </body>
-</html>
+                <!-- include custom script for site  -->
+                <script src="{{asset('js/script.js')}}"></script>
+                </body>
+                </html>

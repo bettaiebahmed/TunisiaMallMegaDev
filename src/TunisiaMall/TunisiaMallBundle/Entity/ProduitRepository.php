@@ -23,15 +23,32 @@ class ProduitRepository extends EntityRepository {
                 
               
                
-                ->where('a.iduser=:idenseigne')
+                ->where('a.idenseigne=:idenseigne')
                 ->setParameter('idenseigne', $idenseigne);
                 
         return $query->getQuery()->getResult();
     }
+      public function search2() {
+
+        $query = $this->createQueryBuilder('TunisiaMallBundle:Media')
+                ->select('a.id,a.ref,a.nomProduit,a.description,a.idenseigne,a.nom_categorie,a.typeProduit,a.quantiteStock,a.prixdetaille,a.prix,a.prixGros,m.path')
+                ->distinct()
+                ->from('TunisiaMallBundle:Produit', 'a')
+                
+                ->join('a.image', 'm');
+                
+              
+               
+                
+        return $query->getQuery()->getResult();
+    }
+    
 
     public function supp($id) {
         $query = $this->getEntityManager()->createQuery("Delete from TunisiaMallBundle:Produit a where a.id=:id ");
         $query->setParameter('id', $id);
+        
+        
         $query->execute();
     }
 

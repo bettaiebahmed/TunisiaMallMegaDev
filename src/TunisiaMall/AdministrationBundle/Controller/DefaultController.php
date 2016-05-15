@@ -23,7 +23,7 @@ class DefaultController extends Controller
        $statistique=$em->getRepository('TunisiaMallBundle:Statistique')->findAll();
         $em=$this->getDoctrine()->getManager(); 
        $usernumber=$em->getRepository('TunisiaMallBundle:User')->getUserNumber()-1;
-       
+     
         
         return $this->render('TunisiaMallAdministrationBundle::administrateur.html.twig', array('statistique'=>$statistique,'usernumber'=>$usernumber));
     }

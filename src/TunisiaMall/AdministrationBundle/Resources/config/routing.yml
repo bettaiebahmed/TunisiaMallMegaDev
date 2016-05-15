@@ -64,3 +64,35 @@ valider_client:
 refuser_client:
     path:     /refuser_client{id}
     defaults: { _controller: TunisiaMallAdministrationBundle:GestionComptes:refuser_client }
+
+_ajouter_promotion:
+    path:     /AjouterPromotion
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionPromotion:AjouterPromotion }
+
+_consulter_promotion:
+    path:     /ConsulterPromotion
+    defaults: { _controller: TunisiaMallAdministrationBundle:GestionPromotion:ConsulterPromotion }
+_creer_pack:
+    path:     /CreerPack
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:CreerPack }
+_afficher_pack:
+    path:     /AfficherPack
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:AfficherPack }
+
+_modifier_pack:
+    path:     /ModifierPack{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:ModifierPack }
+
+_supprimer:
+    path:     /Supprimer{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:Supprimer }
+
+_definir_zone_publicitaire:
+    path:     /DefinirZonePublicitaire{id}
+    defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:DefinirZonePublicitaire }
+_modifier_promo:
+     path:     /changerPromo{id}
+     defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:ModifierPromotion }
+_supprimer_promo:
+     path:     /supprimerrPromo{id}
+     defaults: { _controller: TunisiaMallAdministrationBundle:PackPublicitaire:Supprimer }

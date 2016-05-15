@@ -22,21 +22,13 @@ class Produit
      */
     private $id;
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="idenseigne", type="string")
      * 
      * 
      */
     private $idenseigne;
-     /**
-     * @var integer
-     *
-     * @ORM\Column(name="iduser", type="integer")
-     * 
-     * 
-     */
-    private $iduser;
 
     /**
      * @var string
@@ -286,14 +278,6 @@ class Produit
         $this->prixdetaille = $prixdetaille;
     }
 
-
-    function getIduser() {
-        return $this->iduser;
-    }
-
-    function setIduser($iduser) {
-        $this->iduser = $iduser;
-    }
 
 
 

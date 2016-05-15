@@ -14,7 +14,7 @@ class GestionComptesController extends Controller
         $query = $this->getDoctrine()->getEntityManager()
             ->createQuery(
                 'SELECT u FROM TunisiaMallBundle:User u WHERE u.roles LIKE :role'
-            )->setParameter('role', '%" ROLE_RESPONSABLE"%');
+            )->setParameter('role', '%"ROLE_RESPONSABLE"%');
 
 $user = $query->getResult();
         return $this->render('TunisiaMallAdministrationBundle:GestionComptes:ValiderResponsable.html.twig', array('user' => $user

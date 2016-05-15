@@ -15,13 +15,8 @@ class ProduitController extends Controller
           $article = new Produit();
         $form = $this->createForm(new ajoutArticle(), $article);
         $request = $this->get('request_stack')->getCurrentRequest();
-        $user = $this->get('security.context')->getToken()->getUser();
-        $userId = $user->getId();
-
         $form->handleRequest($request);
         if ($form->isValid()) {
-            
-            $article->setIduser($userId);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();

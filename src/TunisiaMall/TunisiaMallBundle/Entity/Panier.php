@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ *@ORM\Entity(repositoryClass="TunisiaMall\TunisiaMallBundle\Entity\PanierRepository")
+
  */
 class Panier
 {
@@ -20,58 +22,91 @@ class Panier
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="ref", type="string")
+     */
+    private $ref;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="nbreProduit", type="integer")
+     * @ORM\Column(name="nom", type="string")
      */
-    private $nbreProduit;
-/**
-     * @ORM\OneToOne(targetEntity="TunisiaMall\TunisiaMallBundle\Entity\Produit", cascade={"persist","remove"},mappedBy="TunisiaMall\TunisiaMallBundle\Entity\Panier")
-     *  @ORM\JoinColumn(name="idproduit", referencedColumnName="id")
-     */
-    private $idproduit;
-
-    /**
-     * Get id
+    private $nom;
+ /**
+     * @var integer
      *
-     * @return integer 
+     * @ORM\Column(name="prix", type="float")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+    private $prix;
     /**
-     * Set nbreProduit
+     * @var integer
      *
-     * @param integer $nbreProduit
-     * @return Panier
+     * @ORM\Column(name="iduser", type="integer")
      */
-    public function setNbreProduit($nbreProduit)
-    {
-        $this->nbreProduit = $nbreProduit;
-
-        return $this;
-    }
-
+    private $iduser;
     /**
-     * Get nbreProduit
+     * @var string
      *
-     * @return integer 
+     * @ORM\Column(name="qte", type="string")
      */
-    public function getNbreProduit()
-    {
-        return $this->nbreProduit;
-    }
-    function getIdproduit() {
-        return $this->idproduit;
+    private $qte;
+     /**
+     * @var float
+     *
+     * @ORM\Column(name="totale", type="float")
+     */
+    private $totale=0;
+    function getTotale() {
+        return $this->totale;
     }
 
-    function setIdproduit($idproduit) {
-        $this->idproduit = $idproduit;
+    function setTotale($totale) {
+        $this->totale = $totale;
     }
+
+       
+    function getRef() {
+        return $this->ref;
+    }
+
+    function getNom() {
+        return $this->nom;
+    }
+
+    function getPrix() {
+        return $this->prix;
+    }
+
+    function getIduser() {
+        return $this->iduser;
+    }
+
+    function setRef($ref) {
+        $this->ref = $ref;
+    }
+
+    function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    function setIduser($iduser) {
+        $this->iduser = $iduser;
+    }
+    function getQte() {
+        return $this->qte;
+    }
+
+    function setQte($qte) {
+        $this->qte = $qte;
+    }
+
 
 
 }

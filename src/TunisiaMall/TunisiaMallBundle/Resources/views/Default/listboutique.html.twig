@@ -1,0 +1,10 @@
+{% extends "TunisiaMallBundle::layout.html.twig" %}
+{% block content %}
+    {% for boutique in magazins %}
+        <li>
+            <a href=""> {{boutique.nom}} </a>
+        </li>
+    {% endfor %}
+    
+{% endblock content %}
+ 

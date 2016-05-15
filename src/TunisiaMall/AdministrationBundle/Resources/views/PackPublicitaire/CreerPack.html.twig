@@ -1,0 +1,36 @@
+{% extends 'TunisiaMallAdministrationBundle::administrateur.html.twig' %}
+
+{% block emplacement %} <li class="active">Ajouter un paack</li>{%endblock%}
+{% block content%}
+  <div class="page-content-wrap">                
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" method="post" {{ form_enctype(Form) }}>
+                    <!-- START VALIDATIONENGINE PLUGIN -->
+                    <div class="block">
+                        <h4>Ajouter un Pack</h4>                                
+                        <form id="validate" role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">                            
+                      <label>Nom de pack :</label>
+
+                                {{form_widget(Form.nomPub,{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                      
+                            <label>Type de publicite:</label>
+
+                                {{form_widget(Form.typePub,{ 'attr': {'class': 'validate[required,maxSize[8]] form-control'} })}}
+                           
+                    </div>
+                    
+
+
+
+                    <div class="btn-group pull-right">
+                        {{form_rest(Form)}}
+                    </div>     
+                </form>                                   
+                </form>
+            </div>               
+        </div>
+    </div>
+</div>
+ {% endblock %}

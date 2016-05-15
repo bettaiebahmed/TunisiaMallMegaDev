@@ -1,0 +1,46 @@
+{% extends 'TunisiaMallAdministrationBundle::administrateur.html.twig' %}
+
+  
+  
+{% block emplacement %} <li class="active">Modifier Pack</li>{%endblock%}
+{% block content%}
+             
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" method="post" {{ form_enctype(Form) }}>
+                    <!-- START VALIDATIONENGINE PLUGIN -->
+                    <div class="block">
+                                        {% for p in publicite%}
+
+                        <h4>Definir Zone pour pack N° : {{p.id}}</h4>                                
+                        <form id="validate" role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">                            
+                                <label>Nom de Pack:</label>
+
+
+
+                                {{form_widget(Form.nomPub, {'value' : p.nomPub },{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                                  
+                                <br>
+                              
+                            <label>Emplacement:</label>
+
+                  {{form_widget(Form.emplacement,{'attr': {'class': 'validate[required,maxSize[8]] form-control'}} )}}
+                                  
+                                <br>
+                                        </div>
+                    
+
+
+
+                    <div class="btn-group pull-right">
+                        {{form_rest(Form)}}
+                    </div> 
+                        {% endfor %}
+                </form>                                   
+                </form>
+            </div>               
+        </div>
+    </div>
+</div>
+ {% endblock %}
